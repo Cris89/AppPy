@@ -19,6 +19,6 @@ class MyClass(object):
     mqtt = Protocol()
     
     mqtt.connect("127.0.0.1")
-    mqtt.subscribe("Prova")
+    mqtt.subscribe("RandomStringsAppC")
     
     mqtt.client.loop_forever()
