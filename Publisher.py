@@ -19,7 +19,7 @@ class MyClass(object):
     
     mqtt = Protocol()
     
-    mqtt.connect("iot.eclipse.org")
+    mqtt.connect("127.0.0.1")
     
     mqtt.client.loop_start()
     time.sleep(1)

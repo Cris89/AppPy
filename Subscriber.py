@@ -11,14 +11,14 @@ class MyClass(object):
     classdocs
     '''
 
-
     def __init__(self, params):
         '''
         Constructor
         '''
+        
     mqtt = Protocol()
     
-    mqtt.connect("iot.eclipse.org")
-    mqtt.subscribe("ProvaString")
+    mqtt.connect("127.0.0.1")
+    mqtt.subscribe("Prova")
     
     mqtt.client.loop_forever()
