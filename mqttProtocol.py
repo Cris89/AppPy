@@ -4,7 +4,9 @@ Created on Oct 26, 2016
 @author: cris
 '''
 
+import os
 import paho.mqtt.client as paho
+#from publisher import Publisher
 
 class Protocol():
     '''
@@ -12,11 +14,14 @@ class Protocol():
     '''
 
     client = paho.Client(client_id="AppPy")
+    counter = 0
 
     def __init__(self):
         '''
         Constructor
         '''
+    
+    #pub = Publisher()
     
     def on_connect(self, host):
         print("Client ID: " + self.client._client_id + " connected at " + host + ":8883")
@@ -29,11 +34,22 @@ class Protocol():
         print("Subscribed to topic: " + topic)
 
     def on_message(self, client, userdata, msg):
-        learner = open("Learner.txt", "a")
-        learner.write(msg.payload)
-        learner.write("\n")
-        learner.close()
-        print ("Received " + msg.payload + ": written on Learner.txt")
+        data = open("data.txt", "a")
+        data.write(msg.payload)
+        data.write("\n")
+        data.close()
+        print ("Received " + msg.payload + ": written on data.txt")
+        self.counter += 1
+        if self.counter == 6:
+            os.system("/home/cris/spark-2.0.1-bin-hadoop2.7/bin/spark-submit spark.py")
+            self.counter = 0
+            #self.pub.publishCount()
+            #count = open("count.txt", "r")
+            #count.seek(1,2)
+            self.publish("CountsAppPy", "Here I am! :)))")
+            #count.close()
+            
+            
     
     def subscribe(self, topic):
         self.client.on_subscribe = self.on_subscribe(topic)
