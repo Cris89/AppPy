@@ -23,6 +23,7 @@ class spark():
     logData = sc.textFile(logFile).cache()
     num = str(logData.count())
     
-    count = open("count.txt", "w")
+    count = open("count.txt", "a")
     count.write(num)
+    count.write("\n")
     count.close()

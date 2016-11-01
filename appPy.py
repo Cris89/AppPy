@@ -17,8 +17,8 @@ class Subscriber(object):
         '''
     
     mqttPub = Protocol()
-     
+       
     mqttPub.connect("127.0.0.1")
     mqttPub.subscribe("RandomStringsAppCpp")
-      
+        
     mqttPub.client.loop_forever()

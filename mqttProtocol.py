@@ -6,6 +6,7 @@ Created on Oct 26, 2016
 
 import os
 import paho.mqtt.client as paho
+import random
 
 class Protocol():
     '''
@@ -14,6 +15,7 @@ class Protocol():
 
     client = paho.Client(client_id="AppPy")
     counter = 0
+    randomCheck = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     def __init__(self):
         '''
@@ -37,13 +39,16 @@ class Protocol():
         data.close()
         print ("Received " + msg.payload + ": written on data.txt")
         self.counter += 1
-        if self.counter == 6:
+        if self.counter == self.randomCheck:
             os.system("/home/cris/spark-2.0.1-bin-hadoop2.7/bin/spark-submit spark.py")
             count = open("count.txt", "r")
-            self.publish("CountsAppPy", count.read())
+            count.seek(-2,2)
+            while (count.read(1) != '\n'):
+                    count.seek(-2, 1)
+            self.publish("CountsAppPy", count.readline())
             count.close()
             self.counter = 0
-            
+            self.randomCheck = random.choice([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])   
     
     def subscribe(self, topic):
         self.client.subscribe(topic)
