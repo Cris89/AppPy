@@ -10,7 +10,7 @@ import random
 
 CLIENTID = "AppPy"
 DATA = "data.txt"
-SPARKPATH = "/home/cris/Spark-2.0.1-bin-hadoop2.7/bin/Spark-submit"
+SPARKPATH = "/home/cris/spark-2.0.1-bin-hadoop2.7/bin/spark-submit"
 COUNT = "count.txt"
 TOPICPUB = "CountsAppPy"
 
