@@ -4,7 +4,10 @@ Created on Oct 26, 2016
 @author: cris
 '''
 
-from mqttProtocol import Protocol
+from MQTTProtocol import Protocol
+
+ADDRESS = "127.0.0.1"
+TOPICSUB = "RandomStringsAppCpp"
 
 class Subscriber(object):
     '''
@@ -18,7 +21,7 @@ class Subscriber(object):
     
     mqttPub = Protocol()
        
-    mqttPub.connect("127.0.0.1")
-    mqttPub.subscribe("RandomStringsAppCpp")
+    mqttPub.connect(ADDRESS)
+    mqttPub.subscribe(TOPICSUB)
         
     mqttPub.client.loop_forever()
