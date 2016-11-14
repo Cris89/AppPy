@@ -4,7 +4,7 @@ Created on Oct 26, 2016
 @author: cris
 '''
 
-from MQTTProtocol import Protocol
+from mqttProtocol import Protocol
 
 ADDRESS = "127.0.0.1"
 TOPICSUB = "RandomStringsAppCpp"

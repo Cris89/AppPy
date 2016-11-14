@@ -8,9 +8,9 @@ import os
 import paho.mqtt.client as paho
 import random
 
-CLIENTID = "AppPy"
+CLIENTID = "appPy"
 DATA = "data.txt"
-SPARKPATH = "/home/cris/spark-2.0.1-bin-hadoop2.7/bin/spark-submit"
+SPARKPATH = "/home/cris/spark/bin/spark-submit"
 COUNT = "count.txt"
 TOPICPUB = "CountsAppPy"
 
@@ -46,7 +46,7 @@ class Protocol():
         print ("Received " + msg.payload + ": written on data.txt")
         self.counter += 1
         if self.counter == self.randomCheck:
-            os.system(SPARKPATH + " Spark.py")
+            os.system(SPARKPATH + " spark.py")
             count = open(COUNT, "r")
             count.seek(-2,2)
             while (count.read(1) != '\n'):
